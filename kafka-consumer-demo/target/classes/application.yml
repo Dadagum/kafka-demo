@@ -1,0 +1,10 @@
+spring:
+  kafka:
+    bootstrap-servers: 39.108.210.48:9092
+    template:
+      default-topic: test
+    consumer:
+      enable-auto-commit: false
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: com.dadagum.kafka.commons.serializer.MessageDeserializer
