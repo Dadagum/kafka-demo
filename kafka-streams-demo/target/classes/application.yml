@@ -1,0 +1,5 @@
+spring:
+  kafka:
+    streams:
+      bootstrap-servers: 39.108.210.48:9092
+      application-id: hello-stream
