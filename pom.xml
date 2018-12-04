@@ -13,6 +13,7 @@
         <module>kafka-producer-demo</module>
         <module>kafka-commons</module>
         <module>kafka-consumer-demo</module>
+        <module>kafka-streams-demo</module>
     </modules>
 
     <parent>

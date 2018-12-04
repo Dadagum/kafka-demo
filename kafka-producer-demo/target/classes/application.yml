@@ -1,11 +1,12 @@
 spring:
   kafka:
-    bootstrap-servers: 39.108.210.48:9092
+    bootstrap-servers: localhost:9092
     producer:
       acks: all
       compression-type: lz4
       retries: 0
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: com.dadagum.kafka.commons.serializer.MessageSerializer
+      #value-serializer: com.dadagum.kafka.commons.serializer.MessageSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
     template:
-      default-topic: test
+      default-topic: hongda-input

@@ -22,18 +22,25 @@ public class MessageProducer {
 
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy:MM:dd:HH:mm:ss");
 
-    private final KafkaTemplate<String, Message> kafkaTemplate;
+    // private final KafkaTemplate<String, Message> kafkaTemplate;
+    private final KafkaTemplate<String, String> kafkaTemplate;
 
     @Autowired
-    public MessageProducer(KafkaTemplate<String, Message> kafkaTemplate) {
+    public MessageProducer(KafkaTemplate<String, String> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    @Scheduled(cron = "0/3 * * * * ?")
-    public void produceMessage() {
-        Message message = collect();
-        logger.info("producer is sending message = " + message);
-        kafkaTemplate.send("test", message);
+//    @Scheduled(cron = "0/3 * * * * ?")
+//    public void produceMessage() {
+//        Message message = collect();
+//        logger.info("producer is sending message = " + message);
+//        kafkaTemplate.send("test", message);
+//    }
+
+    @Scheduled(cron = "0/10 * * * * ?")
+    public void produceText() {
+        kafkaTemplate.send("hongda-input", getText());
+        logger.info("producer is sending");
     }
 
     /**
@@ -47,5 +54,9 @@ public class MessageProducer {
         message.setValue(random.nextDouble() + random.nextInt(100));
         message.setRunAt(simpleDateFormat.format(new Date()));
         return message;
+    }
+
+    private String getText() {
+        return "Kafka Kafka Streams";
     }
 }
