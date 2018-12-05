@@ -37,7 +37,7 @@ public class MessageProducer {
 //        kafkaTemplate.send("test", message);
 //    }
 
-    @Scheduled(cron = "0/10 * * * * ?")
+    @Scheduled(cron = "0/5 * * * * ?")
     public void produceText() {
         kafkaTemplate.send("hongda-input", getText());
         logger.info("producer is sending");
@@ -57,6 +57,6 @@ public class MessageProducer {
     }
 
     private String getText() {
-        return "Kafka Kafka Streams";
+        return "kafka KAfka Streams";
     }
 }

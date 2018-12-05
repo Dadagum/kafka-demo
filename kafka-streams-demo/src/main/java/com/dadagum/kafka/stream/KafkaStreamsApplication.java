@@ -29,6 +29,8 @@ public class KafkaStreamsApplication {
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        props.put(StreamsConfig.COMMIT_INTERVAL_MS_CONFIG, 10 * 1000);
+
 
         StreamsBuilder builder = new StreamsBuilder();
         KStream<String, String> textLines = builder.stream("hongda-input");
@@ -37,13 +39,12 @@ public class KafkaStreamsApplication {
                 .groupBy((key, word) -> word)
                 .count(Materialized.<String, Long, KeyValueStore<Bytes, byte[]>>as("counts-store"));
         wordCounts.toStream().to("hongda-output", Produced.with(Serdes.String(), Serdes.Long()));
-
         KafkaStreams streams = new KafkaStreams(builder.build(), props);
         streams.start();
     }
 
     /**
-     * youtu
+     * 等价写法
      */
     public static void wordCountVersion2() {
         Properties props = new Properties();

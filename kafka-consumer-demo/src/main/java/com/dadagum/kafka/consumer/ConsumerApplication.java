@@ -5,6 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.handler.annotation.Payload;
 
 
 @SpringBootApplication
@@ -23,8 +26,8 @@ public class ConsumerApplication {
 //    }
 
     @KafkaListener(topics = "hongda-output", id = "WordCountGroup")
-    public void getText() {
-        logger.info("getting message");
+    public void getResult(@Payload Long count, @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) String key) {
+        logger.info("counting result : " + key + " : " + count);
     }
 
 }
