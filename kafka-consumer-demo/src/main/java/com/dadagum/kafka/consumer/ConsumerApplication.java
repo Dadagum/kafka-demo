@@ -27,7 +27,7 @@ public class ConsumerApplication {
 
     @KafkaListener(topics = "hongda-output", id = "WordCountGroup")
     public void getResult(@Payload Long count, @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) String key) {
-        logger.info("counting result : " + key + " : " + count);
+        logger.info("counting result -> " + key + " : " + count);
     }
 
 }

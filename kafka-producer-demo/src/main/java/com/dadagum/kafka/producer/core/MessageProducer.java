@@ -56,6 +56,10 @@ public class MessageProducer {
         return message;
     }
 
+    /**
+     * 模拟发送一句话用作word count
+     * @return
+     */
     private String getText() {
         return "kafka KAfka Streams";
     }
